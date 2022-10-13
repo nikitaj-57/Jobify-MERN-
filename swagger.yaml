@@ -1,0 +1,469 @@
+openapi: 3.0.0
+
+info:
+
+  title: Jobs API
+
+  contact: {}
+
+  version: '1.0'
+
+servers:
+
+- url: https://jobs-api-110.herokuapp.com/api/v1
+
+  variables: {}
+
+paths:
+
+  /auth/register:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: Register Route
+
+      operationId: RegisterRoute
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/RegisterRouteRequest'
+
+              - example:
+
+                  name: prince
+
+                  email: prince@gmail.com
+
+                  password: secret
+
+            example:
+
+              name: prince
+
+              email: prince@gmail.com
+
+              password: secret
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /auth/login:
+
+    post:
+
+      tags:
+
+      - Auth
+
+      summary: Login Route
+
+      operationId: LoginRoute
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/LoginRouteRequest'
+
+              - example:
+
+                  email: susan@gmail.com
+
+                  password: secret
+
+            example:
+
+              email: susan@gmail.com
+
+              password: secret
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /jobs:
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: Get ALL Jobs
+
+      operationId: GetALLJobs
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    post:
+
+      tags:
+
+      - Jobs
+
+      summary: Create a Job
+
+      operationId: CreateaJob
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/CreateaJobRequest'
+
+              - example:
+
+                  company: Google
+
+                  position: SDE-2
+
+            example:
+
+              company: Google
+
+              position: SDE-2
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+
+    get:
+
+      tags:
+
+      - Jobs
+
+      summary: Get Single Job
+
+      operationId: GetSingleJob
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  
+
+    patch:
+
+      tags:
+
+      - Jobs
+
+      summary: Update Job
+
+      operationId: UpdateJob
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/UpdateJobRequest'
+
+              - example:
+
+                  company: Zeta
+
+                  position: SDE-intern
+
+            example:
+
+              company: Zeta
+
+              position: SDE-intern
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    delete:
+
+      tags:
+
+      - Jobs
+
+      summary: Delete Job
+
+      operationId: DeleteJob
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+components:
+
+  schemas:
+
+    RegisterRouteRequest:
+
+      title: RegisterRouteRequest
+
+      required:
+
+      - name
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        name:
+
+          type: string
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        name: prince
+
+        email: prince@gmail.com
+
+        password: secret
+
+    LoginRouteRequest:
+
+      title: LoginRouteRequest
+
+      required:
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        email: susan@gmail.com
+
+        password: secret
+
+    CreateaJobRequest:
+
+      title: CreateaJobRequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: Google
+
+        position: SDE-2
+
+    UpdateJobRequest:
+
+      title: UpdateJobRequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: Zeta
+
+        position: SDE-intern
+
+  securitySchemes:
+
+    bearer:
+
+      type: http
+
+      scheme: bearer
+
+security: []
+
+tags:
+
+- name: Auth
+
+- name: Jobs
+
