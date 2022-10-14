@@ -1,24 +1,23 @@
-##### Deployment on Heroku
-- remove any existing git file using rm -rf .git
+##### JobsAPI 
 
-- check for process.env.PORT
+Backend application created using Node.js in order to track job applications during job search.
 
-- set up dummy get route to ensure everything is working
-- specify node version on package.json
-```js
-"engines":{
-    "node": "16.x"
-  }
+In order to start the npm server, create .env file in the folder and initialize the variables.
+- MONGO_URI
+- JWT_SECRET
+- JWT_LIFETIME
+
+In the bash -
+```bash
+npm install && npm start
 ```
-- Change nodemon app.js to node app.js in start command
-- setup procfile
-```js
-web: node app.js
-```
-- setup .gitignore
-```js
-/node_modules
-.env
-```
-###### working with git
-- git init
+
+Deployed on heroku. Link - https://jobs-api-110.herokuapp.com/
+
+Documentation using swagger UI.
+
+
+
+
+
+
